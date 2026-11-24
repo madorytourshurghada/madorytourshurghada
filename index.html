@@ -21,16 +21,15 @@
         <!-- Voile sombre subtil pour que le texte blanc reste bien lisible -->
         <div class="absolute inset-0 bg-gradient-to-b from-slate-900/55 via-slate-900/40 to-slate-900/65 pointer-events-none"></div>
 
-        <div class="max-w-6xl mx-auto relative z-10">
-            <!-- Barre supérieure : localisation + langues -->
-            <a href="https://www.google.com/maps/search/?api=1&query=Hurghada+Marina,+Hurghada,+Egypt" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-black/30 hover:bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-medium border border-white/25 transition cursor-pointer">
+        <!-- Barre supérieure : localisation + langues -->
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-8">
+                <a href="https://www.google.com/maps/search/?api=1&query=Hurghada+Marina,+Hurghada,+Egypt" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-black/30 hover:bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-medium border border-white/25 transition cursor-pointer">
                     <span>📍</span>
                     <span>Hurghada, Mer Rouge</span>
                 </a>
-                </div>
 
                 <!-- Sélecteur de langue -->
-                <div class="flex items-center gap-1 bg-black/30 backdrop-blur-md p-1 rounded-full border border-white/25">
+                <div class="inline-flex items-center gap-1 bg-black/30 backdrop-blur-md p-1 rounded-full border border-white/25">
                     <button onclick="setLanguage('fr')" id="btn-fr" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-full bg-white text-sky-700 shadow-sm transition">🇫🇷 FR</button>
                     <button onclick="setLanguage('en')" id="btn-en" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-full text-white hover:bg-white/20 transition">🇬🇧 EN</button>
                     <button onclick="setLanguage('de')" id="btn-de" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-full text-white hover:bg-white/20 transition">🇩🇪 DE</button>
