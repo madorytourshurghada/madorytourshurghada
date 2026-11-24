@@ -135,6 +135,7 @@
                 noResults: "Aucune excursion trouvée.",
                 onRequest: "Sur demande",
                 perPerson: "/ pers.",
+                group1to4: "(1 à 4 pers.)",
                 bookBtn: "Réserver",
                 whatsappMsg: "Bonjour, je souhaite réserver l'excursion : ",
                 footerText: "Excursions en mer Rouge, désert & culture égyptienne • Réservation directe WhatsApp",
@@ -148,6 +149,7 @@
                 noResults: "No excursions found.",
                 onRequest: "On request",
                 perPerson: "/ pers.",
+                group1to4: "(1 to 4 pers.)",
                 bookBtn: "Book now",
                 whatsappMsg: "Hello, I would like to book the excursion: ",
                 footerText: "Red Sea excursions, desert & Egyptian culture • Direct WhatsApp booking",
@@ -161,6 +163,7 @@
                 noResults: "Keine Ausflüge gefunden.",
                 onRequest: "Auf Anfrage",
                 perPerson: "/ Pers.",
+                group1to4: "(1 bis 4 Pers.)",
                 bookBtn: "Buchen",
                 whatsappMsg: "Hallo, ich möchte folgenden Ausflug buchen: ",
                 footerText: "Ausflüge am Roten Meer, Wüste & ägyptische Kultur • Direkte WhatsApp-Buchung",
@@ -174,6 +177,7 @@
                 noResults: "Экскурсии не найдены.",
                 onRequest: "По запросу",
                 perPerson: "/ чел.",
+                group1to4: "(от 1 до 4 чел.)",
                 bookBtn: "Забронировать",
                 whatsappMsg: "Здравствуйте, я хотел(а) бы забронировать экскурсию: ",
                 footerText: "Экскурсии на Красном море, пустыня и культура Египта • Бронирование через WhatsApp",
@@ -335,7 +339,7 @@
                 const priceHtml = isOnRequest
                     ? '<span class="text-base font-bold text-sky-700">' + t.onRequest + '</span>'
                     : isGroupPrice
-                        ? '<span class="text-2xl font-extrabold text-slate-900">' + prix + ' ' + devise + '</span> <span class="text-xs text-slate-400 font-medium">(1-4)</span>'
+                        ? '<span class="text-2xl font-extrabold text-slate-900">' + prix + ' ' + devise + '</span> <span class="text-xs text-slate-500 font-medium block sm:inline">' + t.group1to4 + '</span>'
                         : '<span class="text-2xl font-extrabold text-slate-900">' + prix + ' ' + devise + '</span> <span class="text-xs text-slate-400 font-medium">' + t.perPerson + '</span>';
 
                 const imageUrl = (item.Image_URL && item.Image_URL.trim() !== '')
