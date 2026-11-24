@@ -6,38 +6,97 @@
     <title>MaDory Tours Hurghada - Excursions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
-    <div class="max-w-md mx-auto bg-white min-h-screen shadow-lg pb-10">
-        <!-- Header & Sélecteur de langue -->
-        <div class="bg-blue-600 text-white p-6 text-center shadow-md relative">
-            <div class="flex justify-end gap-1.5 mb-3">
-                <button onclick="setLanguage('fr')" id="btn-fr" class="lang-btn px-2 py-0.5 text-xs font-bold rounded bg-white text-blue-600 transition">FR</button>
-                <button onclick="setLanguage('en')" id="btn-en" class="lang-btn px-2 py-0.5 text-xs font-bold rounded bg-blue-700 text-white hover:bg-blue-500 transition">EN</button>
-                <button onclick="setLanguage('ru')" id="btn-ru" class="lang-btn px-2 py-0.5 text-xs font-bold rounded bg-blue-700 text-white hover:bg-blue-500 transition">RU</button>
-                <button onclick="setLanguage('de')" id="btn-de" class="lang-btn px-2 py-0.5 text-xs font-bold rounded bg-blue-700 text-white hover:bg-blue-500 transition">DE</button>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- En-tête Hero Mer Rouge -->
+    <header class="relative bg-gradient-to-br from-sky-700 via-cyan-600 to-teal-500 text-white pt-6 pb-20 px-4 shadow-lg overflow-hidden">
+        <!-- Cercles décoratifs subtils -->
+        <div class="absolute -top-24 -right-24 w-72 h-72 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-amber-300/15 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto relative z-10">
+            <!-- Barre supérieure : localisation + langues -->
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-8">
+                <div class="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-medium border border-white/20">
+                    <span>📍</span>
+                    <span>Hurghada, Mer Rouge</span>
+                </div>
+
+                <!-- Sélecteur de langue -->
+                <div class="flex items-center gap-1 bg-white/15 backdrop-blur-md p-1 rounded-full border border-white/20">
+                    <button onclick="setLanguage('fr')" id="btn-fr" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-full bg-white text-sky-700 shadow-sm transition">🇫🇷 FR</button>
+                    <button onclick="setLanguage('en')" id="btn-en" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-full text-white hover:bg-white/20 transition">🇬🇧 EN</button>
+                    <button onclick="setLanguage('de')" id="btn-de" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-full text-white hover:bg-white/20 transition">🇩🇪 DE</button>
+                    <button onclick="setLanguage('ru')" id="btn-ru" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-full text-white hover:bg-white/20 transition">🇷🇺 RU</button>
+                </div>
             </div>
 
-            <!-- Logo MaDory Tours -->
-            <div class="flex justify-center mb-3">
-                <img id="brand-logo" src="logo.png" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=MaDory+Tours&background=ffffff&color=2563eb&size=128&bold=true';" alt="MaDory Tours Hurghada" class="w-20 h-20 rounded-full object-cover border-2 border-white shadow-md">
+            <!-- Logo & Titre -->
+            <div class="text-center max-w-2xl mx-auto">
+                <div class="flex justify-center mb-4">
+                    <div class="p-1 rounded-full bg-gradient-to-tr from-amber-300 to-white shadow-xl">
+                        <img id="brand-logo" src="logo.png" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=MaDory+Tours&background=ffffff&color=0369a1&size=160&bold=true';" alt="MaDory Tours Hurghada" class="w-24 h-24 rounded-full object-cover bg-white">
+                    </div>
+                </div>
+                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight drop-shadow-sm">MaDory Tours</h1>
+                <p id="subtitle" class="text-sky-50 text-sm sm:text-base mt-2 font-light">Explorez et réservez vos excursions inoubliables à Hurghada</p>
             </div>
-
-            <h1 class="text-2xl font-bold">MaDory Tours</h1>
-            <p id="subtitle" class="text-sm opacity-90">Explorez et réservez vos excursions</p>
         </div>
 
-        <!-- Recherche & Filtres -->
-        <div class="p-4 space-y-3">
-            <input type="text" id="search" placeholder="Rechercher une excursion..." class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <div id="filters" class="flex flex-wrap gap-2"></div>
+        <!-- Vague décorative en bas du header -->
+        <div class="absolute bottom-0 left-0 right-0 leading-none pointer-events-none">
+            <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-10 sm:h-14" preserveAspectRatio="none">
+                <path d="M0 32L60 37.3C120 43 240 53 360 53.3C480 53 600 43 720 32C840 21 960 11 1080 16C1200 21 1320 43 1380 53.3L1440 64V80H1380C1320 80 1200 80 1080 80C960 80 840 80 720 80C600 80 480 80 360 80C240 80 120 80 60 80H0V32Z" fill="#f8fafc"/>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <main class="max-w-6xl w-full mx-auto px-4 -mt-10 relative z-20 flex-1 pb-16">
+        <!-- Barre de recherche & Filtres flottants -->
+        <div class="bg-white rounded-2xl shadow-md border border-slate-100 p-4 sm:p-5 mb-8">
+            <div class="relative mb-4">
+                <svg class="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1010.5 18a7.5 7.5 0 006.15-3.35z"/>
+                </svg>
+                <input type="text" id="search" placeholder="Rechercher une excursion (Orange Bay, Safari, Louxor...)" class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:bg-white transition">
+            </div>
+
+            <div id="filters" class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+                <!-- Boutons de catégories injectés par JS -->
+            </div>
         </div>
 
         <!-- Grille du Catalogue -->
-        <div id="catalog" class="p-4 grid grid-cols-1 gap-4">
-            <p class="text-center text-gray-400 py-10">Chargement des excursions...</p>
+        <div id="catalog" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="col-span-full flex flex-col items-center justify-center py-16 text-slate-400">
+                <div class="w-10 h-10 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mb-3"></div>
+                <p class="text-sm font-medium">Chargement des excursions...</p>
+            </div>
         </div>
-    </div>
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="bg-slate-900 text-slate-300 py-8 px-4 text-center text-sm">
+        <div class="max-w-6xl mx-auto">
+            <p class="font-bold text-white text-base mb-1">MaDory Tours Hurghada</p>
+            <p id="footer-text" class="text-slate-400 text-xs">Excursions en mer Rouge, désert & culture égyptienne • Réservation directe WhatsApp</p>
+        </div>
+    </footer>
+
+    <!-- Bouton WhatsApp flottant -->
+    <a id="floating-wa" href="https://wa.me/4915732832479" target="_blank" aria-label="Contact WhatsApp" class="fixed bottom-5 right-5 z-50 bg-emerald-500 hover:bg-emerald-600 text-white p-3.5 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition flex items-center justify-center">
+        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.443-9.89 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    </a>
 
     <script>
         const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRqOcHpCekcTK0qob8SOnpuMNhC7kM24JRJjb_stBGYP7qzh0RD-03Wd67l7N-gHGcLCxYIj3Zf2tWS/pub?output=csv';
@@ -50,58 +109,82 @@
 
         const translations = {
             fr: {
-                subtitle: "Explorez et réservez vos excursions",
-                searchPlaceholder: "Rechercher une excursion...",
-                allCategory: "Tous",
+                subtitle: "Explorez et réservez vos excursions inoubliables à Hurghada",
+                searchPlaceholder: "Rechercher une excursion (Orange Bay, Safari, Louxor...)",
+                allCategory: "Toutes",
                 noResults: "Aucune excursion trouvée.",
                 onRequest: "Sur demande",
+                perPerson: "/ pers.",
                 bookBtn: "Réserver",
-                whatsappMsg: "Bonjour, je souhaite réserver l'excursion : "
+                whatsappMsg: "Bonjour, je souhaite réserver l'excursion : ",
+                footerText: "Excursions en mer Rouge, désert & culture égyptienne • Réservation directe WhatsApp"
             },
             en: {
-                subtitle: "Explore and book your excursions",
-                searchPlaceholder: "Search for an excursion...",
+                subtitle: "Explore and book your unforgettable excursions in Hurghada",
+                searchPlaceholder: "Search for an excursion (Orange Bay, Safari, Luxor...)",
                 allCategory: "All",
                 noResults: "No excursions found.",
                 onRequest: "On request",
+                perPerson: "/ pers.",
                 bookBtn: "Book now",
-                whatsappMsg: "Hello, I would like to book the excursion: "
-            },
-            ru: {
-                subtitle: "Исследуйте и бронируйте экскурсии",
-                searchPlaceholder: "Поиск экскурсии...",
-                allCategory: "Все",
-                noResults: "Экскурсии не найдены.",
-                onRequest: "По запросу",
-                bookBtn: "Забронировать",
-                whatsappMsg: "Здравствуйте, я хотел(а) бы забронировать экскурсию: "
+                whatsappMsg: "Hello, I would like to book the excursion: ",
+                footerText: "Red Sea excursions, desert & Egyptian culture • Direct WhatsApp booking"
             },
             de: {
-                subtitle: "Entdecken und buchen Sie Ihre Ausflüge",
-                searchPlaceholder: "Ausflug suchen...",
+                subtitle: "Entdecken und buchen Sie unvergessliche Ausflüge in Hurghada",
+                searchPlaceholder: "Ausflug suchen (Orange Bay, Safari, Luxor...)",
                 allCategory: "Alle",
                 noResults: "Keine Ausflüge gefunden.",
                 onRequest: "Auf Anfrage",
+                perPerson: "/ Pers.",
                 bookBtn: "Buchen",
-                whatsappMsg: "Hallo, ich möchte folgenden Ausflug buchen: "
+                whatsappMsg: "Hallo, ich möchte folgenden Ausflug buchen: ",
+                footerText: "Ausflüge am Roten Meer, Wüste & ägyptische Kultur • Direkte WhatsApp-Buchung"
+            },
+            ru: {
+                subtitle: "Исследуйте и бронируйте незабываемые экскурсии в Хургаде",
+                searchPlaceholder: "Поиск экскурсии (Оранж Бэй, Сафари, Луксор...)",
+                allCategory: "Все",
+                noResults: "Экскурсии не найдены.",
+                onRequest: "По запросу",
+                perPerson: "/ чел.",
+                bookBtn: "Забронировать",
+                whatsappMsg: "Здравствуйте, я хотел(а) бы забронировать экскурсию: ",
+                footerText: "Экскурсии на Красном море, пустыня и культура Египта • Бронирование через WhatsApp"
             }
         };
+
+        const categoryTranslations = {
+            "Îles & Plages": { fr: "Îles & Plages", en: "Islands & Beaches", de: "Inseln & Strände", ru: "Острова и пляжи" },
+            "Activités Nautiques & Plongée": { fr: "Nautique & Plongée", en: "Water Sports & Diving", de: "Wassersport & Tauchen", ru: "Водные виды и дайвинг" },
+            "Désert & Aventure": { fr: "Désert & Aventure", en: "Desert & Adventure", de: "Wüste & Abenteuer", ru: "Пустыня и приключения" },
+            "Culture & Histoire": { fr: "Culture & Histoire", en: "Culture & History", de: "Kultur & Geschichte", ru: "Культура и история" }
+        };
+
+        function getCategoryLabel(cat) {
+            if (cat === 'All') return translations[currentLang].allCategory;
+            if (categoryTranslations[cat] && categoryTranslations[cat][currentLang]) {
+                return categoryTranslations[cat][currentLang];
+            }
+            return cat;
+        }
 
         function setLanguage(lang) {
             currentLang = lang;
 
             document.querySelectorAll('.lang-btn').forEach(function(btn) {
-                btn.classList.remove('bg-white', 'text-blue-600');
-                btn.classList.add('bg-blue-700', 'text-white');
+                btn.classList.remove('bg-white', 'text-sky-700', 'shadow-sm');
+                btn.classList.add('text-white', 'hover:bg-white/20');
             });
 
             const activeBtn = document.getElementById('btn-' + lang);
-            activeBtn.classList.remove('bg-blue-700', 'text-white');
-            activeBtn.classList.add('bg-white', 'text-blue-600');
+            activeBtn.classList.remove('text-white', 'hover:bg-white/20');
+            activeBtn.classList.add('bg-white', 'text-sky-700', 'shadow-sm');
 
             const t = translations[lang];
             document.getElementById('subtitle').innerText = t.subtitle;
             document.getElementById('search').placeholder = t.searchPlaceholder;
+            document.getElementById('footer-text').innerText = t.footerText;
 
             initFilters();
             applyFiltersAndSearch();
@@ -119,16 +202,12 @@
         }
 
         fetch(CSV_URL)
-            .then(function(response) {
-                return response.text();
-            })
+            .then(function(response) { return response.text(); })
             .then(function(csvText) {
                 Papa.parse(csvText, {
                     header: true,
                     skipEmptyLines: true,
-                    transformHeader: function(h) {
-                        return h.trim();
-                    },
+                    transformHeader: function(h) { return h.trim(); },
                     complete: function(results) {
                         excursions = results.data.filter(function(item) {
                             const hasName = item.Nom && item.Nom.trim() !== '';
@@ -145,7 +224,7 @@
                 });
             })
             .catch(function() {
-                document.getElementById('catalog').innerHTML = '<p class="text-center text-red-500 py-10">Erreur de chargement des données.</p>';
+                document.getElementById('catalog').innerHTML = '<p class="text-center text-red-500 col-span-full py-10">Erreur de chargement des données.</p>';
             });
 
         function initFilters() {
@@ -153,10 +232,12 @@
             container.innerHTML = '';
             categories.forEach(function(category) {
                 const btn = document.createElement('button');
-                btn.innerText = category === 'All' ? translations[currentLang].allCategory : category;
+                btn.innerText = getCategoryLabel(category);
                 const isSelected = category === currentCategory;
-                btn.className = 'category-btn px-3 py-1 rounded-full text-sm font-medium transition ' +
-                    (isSelected ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700');
+                btn.className = 'whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition ' +
+                    (isSelected
+                        ? 'bg-gradient-to-r from-sky-600 to-cyan-500 text-white shadow-md'
+                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200');
                 btn.onclick = function() {
                     currentCategory = category;
                     initFilters();
@@ -187,43 +268,49 @@
             const t = translations[currentLang];
 
             if (data.length === 0) {
-                container.innerHTML = '<p class="text-center text-gray-500 col-span-full py-10">' + t.noResults + '</p>';
+                container.innerHTML = '<p class="text-center text-slate-400 col-span-full py-16 text-base">' + t.noResults + '</p>';
                 return;
             }
 
             data.forEach(function(item) {
                 const nom = getLocalizedText(item, 'Nom');
                 const description = getLocalizedText(item, 'Description');
-                const categorie = item.Catégorie ? item.Catégorie.trim() : '';
+                const rawCat = item.Catégorie ? item.Catégorie.trim() : '';
+                const categorie = getCategoryLabel(rawCat);
                 const prix = item.Prix ? item.Prix.trim() : '';
-                const devise = item.Devise ? item.Devise.trim() : '€';
-                const priceDisplay = (!prix || prix.toLowerCase() === 'sur demande')
-                    ? t.onRequest
-                    : (prix + ' ' + devise);
+                const isOnRequest = !prix || prix.toLowerCase() === 'sur demande';
+                const devise = (item.Devise && item.Devise.trim().toLowerCase() === 'euro') ? '€' : (item.Devise ? item.Devise.trim() : '€');
+                const priceHtml = isOnRequest
+                    ? '<span class="text-base font-bold text-sky-700">' + t.onRequest + '</span>'
+                    : '<span class="text-2xl font-extrabold text-slate-900">' + prix + ' ' + devise + '</span> <span class="text-xs text-slate-400 font-medium">' + t.perPerson + '</span>';
+
                 const imageUrl = (item.Image_URL && item.Image_URL.trim() !== '')
                     ? item.Image_URL.trim()
-                    : 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80';
+                    : 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80';
                 const message = encodeURIComponent(t.whatsappMsg + nom);
                 const whatsappUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + message;
 
                 const card =
-                    '<div class="bg-white rounded-xl overflow-hidden shadow border border-gray-100 flex flex-col">' +
-                        '<img src="' + imageUrl + '" alt="' + nom + '" class="w-full h-48 object-cover">' +
-                        '<div class="p-4 flex-1 flex flex-col justify-between">' +
+                    '<article class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 flex flex-col transition-all duration-300 hover:-translate-y-1">' +
+                        '<div class="relative h-52 overflow-hidden bg-slate-200">' +
+                            '<img src="' + imageUrl + '" alt="' + nom + '" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">' +
+                            '<div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>' +
+                            '<span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-sky-800 text-[11px] font-bold px-3 py-1 rounded-full shadow-sm">' + categorie + '</span>' +
+                        '</div>' +
+                        '<div class="p-5 flex-1 flex flex-col justify-between">' +
                             '<div>' +
-                                '<span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">' + categorie + '</span>' +
-                                '<h3 class="text-lg font-bold text-gray-900 mt-1">' + nom + '</h3>' +
-                                '<p class="text-sm text-gray-600 mt-2 line-clamp-3">' + description + '</p>' +
+                                '<h3 class="text-lg font-bold text-slate-900 group-hover:text-sky-700 transition">' + nom + '</h3>' +
+                                '<p class="text-sm text-slate-500 mt-2 leading-relaxed">' + description + '</p>' +
                             '</div>' +
-                            '<div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">' +
-                                '<span class="text-xl font-extrabold text-gray-900">' + priceDisplay + '</span>' +
-                                '<a href="' + whatsappUrl + '" target="_blank" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center shadow-sm transition">' +
+                            '<div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between gap-2">' +
+                                '<div>' + priceHtml + '</div>' +
+                                '<a href="' + whatsappUrl + '" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2.5 rounded-xl text-sm font-semibold flex items-center shadow-sm hover:shadow transition">' +
                                     '<svg class="w-4 h-4 mr-1.5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.443-9.89 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>' +
                                     t.bookBtn +
                                 '</a>' +
                             '</div>' +
                         '</div>' +
-                    '</div>';
+                    '</article>';
 
                 container.innerHTML += card;
             });
