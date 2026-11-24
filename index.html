@@ -136,6 +136,7 @@
                 onRequest: "Sur demande",
                 perPerson: "/ pers.",
                 group1to4: "(1 à 4 pers.)",
+                group1to8: "(1 à 8 pers.)",
                 bookBtn: "Réserver",
                 whatsappMsg: "Bonjour, je souhaite réserver l'excursion : ",
                 footerText: "Excursions en mer Rouge, désert & culture égyptienne • Réservation directe WhatsApp",
@@ -150,6 +151,7 @@
                 onRequest: "On request",
                 perPerson: "/ pers.",
                 group1to4: "(1 to 4 pers.)",
+                group1to8: "(1 to 8 pers.)",
                 bookBtn: "Book now",
                 whatsappMsg: "Hello, I would like to book the excursion: ",
                 footerText: "Red Sea excursions, desert & Egyptian culture • Direct WhatsApp booking",
@@ -164,6 +166,7 @@
                 onRequest: "Auf Anfrage",
                 perPerson: "/ Pers.",
                 group1to4: "(1 bis 4 Pers.)",
+                group1to8: "(1 bis 8 Pers.)",
                 bookBtn: "Buchen",
                 whatsappMsg: "Hallo, ich möchte folgenden Ausflug buchen: ",
                 footerText: "Ausflüge am Roten Meer, Wüste & ägyptische Kultur • Direkte WhatsApp-Buchung",
@@ -178,6 +181,7 @@
                 onRequest: "По запросу",
                 perPerson: "/ чел.",
                 group1to4: "(от 1 до 4 чел.)",
+                group1to8: "(от 1 до 8 чел.)",
                 bookBtn: "Забронировать",
                 whatsappMsg: "Здравствуйте, я хотел(а) бы забронировать экскурсию: ",
                 footerText: "Экскурсии на Красном море, пустыня и культура Египта • Бронирование через WhatsApp",
@@ -334,13 +338,21 @@
                 const categorie = getCategoryLabel(rawCat);
                 const prix = item.Prix ? item.Prix.trim() : '';
                 const isOnRequest = !prix || prix.toLowerCase() === 'sur demande';
-                const isGroupPrice = item.Nom && item.Nom.toLowerCase().includes('buggy');
+                const rawNomLower = item.Nom ? item.Nom.toLowerCase() : '';
+                const isBuggy = rawNomLower.includes('buggy');
+                const isSpeedBoat = rawNomLower.includes('speed boat') || rawNomLower.includes('speedboat');
                 const devise = (item.Devise && item.Devise.trim().toLowerCase() === 'euro') ? '€' : (item.Devise ? item.Devise.trim() : '€');
+
+                let priceSuffix = '<span class="text-xs text-slate-400 font-medium">' + t.perPerson + '</span>';
+                if (isBuggy) {
+                    priceSuffix = '<span class="text-xs text-slate-500 font-medium block sm:inline">' + t.group1to4 + '</span>';
+                } else if (isSpeedBoat) {
+                    priceSuffix = '<span class="text-xs text-slate-500 font-medium block sm:inline">' + t.group1to8 + '</span>';
+                }
+
                 const priceHtml = isOnRequest
                     ? '<span class="text-base font-bold text-sky-700">' + t.onRequest + '</span>'
-                    : isGroupPrice
-                        ? '<span class="text-2xl font-extrabold text-slate-900">' + prix + ' ' + devise + '</span> <span class="text-xs text-slate-500 font-medium block sm:inline">' + t.group1to4 + '</span>'
-                        : '<span class="text-2xl font-extrabold text-slate-900">' + prix + ' ' + devise + '</span> <span class="text-xs text-slate-400 font-medium">' + t.perPerson + '</span>';
+                    : '<span class="text-2xl font-extrabold text-slate-900">' + prix + ' ' + devise + '</span> ' + priceSuffix;
 
                 const imageUrl = (item.Image_URL && item.Image_URL.trim() !== '')
                     ? item.Image_URL.trim()
