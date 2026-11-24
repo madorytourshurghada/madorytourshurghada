@@ -16,23 +16,21 @@
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
-
-    <!-- En-tête Hero Mer Rouge -->
-    <header class="relative bg-gradient-to-br from-sky-700 via-cyan-600 to-teal-500 text-white pt-6 pb-20 px-4 shadow-lg overflow-hidden">
-        <!-- Cercles décoratifs subtils -->
-        <div class="absolute -top-24 -right-24 w-72 h-72 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
-        <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-amber-300/15 rounded-full blur-2xl pointer-events-none"></div>
+<!-- En-tête Hero Égypte -->
+    <header class="relative bg-cover bg-center text-white pt-6 pb-24 px-4 shadow-lg overflow-hidden" style="background-image: url('banniere.jpg');">
+        <!-- Voile sombre subtil pour que le texte blanc reste bien lisible -->
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-900/55 via-slate-900/40 to-slate-900/65 pointer-events-none"></div>
 
         <div class="max-w-6xl mx-auto relative z-10">
             <!-- Barre supérieure : localisation + langues -->
             <div class="flex flex-wrap items-center justify-between gap-3 mb-8">
-                <div class="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-medium border border-white/20">
+                <div class="inline-flex items-center gap-1.5 bg-black/30 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-medium border border-white/25">
                     <span>📍</span>
                     <span>Hurghada, Mer Rouge</span>
                 </div>
 
                 <!-- Sélecteur de langue -->
-                <div class="flex items-center gap-1 bg-white/15 backdrop-blur-md p-1 rounded-full border border-white/20">
+                <div class="flex items-center gap-1 bg-black/30 backdrop-blur-md p-1 rounded-full border border-white/25">
                     <button onclick="setLanguage('fr')" id="btn-fr" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-full bg-white text-sky-700 shadow-sm transition">🇫🇷 FR</button>
                     <button onclick="setLanguage('en')" id="btn-en" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-full text-white hover:bg-white/20 transition">🇬🇧 EN</button>
                     <button onclick="setLanguage('de')" id="btn-de" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-full text-white hover:bg-white/20 transition">🇩🇪 DE</button>
@@ -47,14 +45,18 @@
                         <img id="brand-logo" src="logo.png" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=MaDory+Tours&background=ffffff&color=0369a1&size=160&bold=true';" alt="MaDory Tours Hurghada" class="w-24 h-24 rounded-full object-cover bg-white">
                     </div>
                 </div>
-                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight drop-shadow-sm">MaDory Tours</h1>
-                <p id="subtitle" class="text-sky-50 text-sm sm:text-base mt-2 font-light">Explorez et réservez vos excursions inoubliables à Hurghada</p>
+                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight drop-shadow-md">MaDory Tours</h1>
+                <p id="subtitle" class="text-white text-sm sm:text-base mt-2 font-medium drop-shadow">Explorez et réservez vos excursions inoubliables à Hurghada</p>
             </div>
         </div>
 
         <!-- Vague décorative en bas du header -->
-        <div class="absolute bottom-0 left-0 right-0 leading-none pointer-events-none">
+        <div class="absolute bottom-0 left-0 right-0 leading-none pointer-events-none z-10">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-10 sm:h-14" preserveAspectRatio="none">
+                <path d="M0 32L60 37.3C120 43 240 53 360 53.3C480 53 600 43 720 32C840 21 960 11 1080 16C1200 21 1320 43 1380 53.3L1440 64V80H1380C1320 80 1200 80 1080 80C960 80 840 80 720 80C600 80 480 80 360 80C240 80 120 80 60 80H0V32Z" fill="#f8fafc"/>
+            </svg>
+        </div>
+    </header>
                 <path d="M0 32L60 37.3C120 43 240 53 360 53.3C480 53 600 43 720 32C840 21 960 11 1080 16C1200 21 1320 43 1380 53.3L1440 64V80H1380C1320 80 1200 80 1080 80C960 80 840 80 720 80C600 80 480 80 360 80C240 80 120 80 60 80H0V32Z" fill="#f8fafc"/>
             </svg>
         </div>
