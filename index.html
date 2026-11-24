@@ -21,12 +21,19 @@
         <!-- Voile sombre subtil pour que le texte blanc reste bien lisible -->
         <div class="absolute inset-0 bg-gradient-to-b from-slate-900/55 via-slate-900/40 to-slate-900/65 pointer-events-none"></div>
 
-        <!-- Barre supérieure : localisation + langues -->
+        <!-- Barre supérieure : localisation + galerie + langues -->
             <div class="flex flex-wrap items-center justify-between gap-3 mb-8">
-                <a href="https://www.google.com/maps/search/?api=1&query=Hurghada+Marina,+Hurghada,+Egypt" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-black/30 hover:bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-medium border border-white/25 transition cursor-pointer">
-                    <span>📍</span>
-                    <span>Hurghada, Mer Rouge</span>
-                </a>
+                <div class="flex flex-wrap items-center gap-2">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Hurghada+Marina,+Hurghada,+Egypt" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-black/30 hover:bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-medium border border-white/25 transition cursor-pointer">
+                        <span>📍</span>
+                        <span>Hurghada, Mer Rouge</span>
+                    </a>
+
+                    <button onclick="openGallery()" id="btn-gallery" class="inline-flex items-center gap-1.5 bg-amber-400/90 hover:bg-amber-400 text-slate-900 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-bold shadow-sm transition cursor-pointer">
+                        <span>📸</span>
+                        <span id="gallery-btn-text">Nos photos</span>
+                    </button>
+                </div>
 
                 <!-- Sélecteur de langue -->
                 <div class="inline-flex items-center gap-1 bg-black/30 backdrop-blur-md p-1 rounded-full border border-white/25">
@@ -36,7 +43,6 @@
                     <button onclick="setLanguage('ru')" id="btn-ru" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-full text-white hover:bg-white/20 transition">🇷🇺 RU</button>
                 </div>
             </div>
-
             <!-- Logo & Titre -->
             <div class="text-center max-w-2xl mx-auto">
                 <div class="flex justify-center mb-4">
