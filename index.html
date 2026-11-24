@@ -22,7 +22,7 @@
         <!-- Voile sombre subtil -->
         <div class="absolute inset-0 bg-gradient-to-b from-slate-900/55 via-slate-900/40 to-slate-900/65 pointer-events-none"></div>
 
-        <!-- Conteneur au-dessus du voile (z-20 pour que tous les boutons soient cliquables) -->
+        <!-- Conteneur principal du header (z-20 pour garantir les clics) -->
         <div class="max-w-6xl mx-auto relative z-20">
             <!-- Barre supérieure : localisation + galerie + langues -->
             <div class="flex flex-wrap items-center justify-between gap-3 mb-8">
@@ -38,7 +38,7 @@
                     </button>
                 </div>
 
-                <!-- Sélecteur de langue -->
+                <!-- Sélecteur de langue compact -->
                 <div class="inline-flex items-center gap-1 bg-black/30 backdrop-blur-md p-1 rounded-full border border-white/25">
                     <button type="button" onclick="setLanguage('fr')" id="btn-fr" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-full bg-white text-sky-700 shadow-sm transition">🇫🇷 FR</button>
                     <button type="button" onclick="setLanguage('en')" id="btn-en" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-full text-white hover:bg-white/20 transition">🇬🇧 EN</button>
@@ -97,7 +97,7 @@
         <div class="max-w-6xl mx-auto">
             <p class="font-bold text-white text-base mb-1">MaDory Tours Hurghada</p>
             <p id="footer-text" class="text-slate-400 text-xs">Excursions en mer Rouge, désert & culture égyptienne • Réservation directe WhatsApp</p>
-            <p class="text-slate-500 text-[11px] mt-3">Réalisation: Creaconseilplus</p>
+            <p class="text-slate-500 text-[11px] mt-3">Réalisation Creaconseilplus</p>
         </div>
     </footer>
 
@@ -330,10 +330,13 @@
                 const categorie = getCategoryLabel(rawCat);
                 const prix = item.Prix ? item.Prix.trim() : '';
                 const isOnRequest = !prix || prix.toLowerCase() === 'sur demande';
+                const isGroupPrice = item.Nom && item.Nom.toLowerCase().includes('buggy');
                 const devise = (item.Devise && item.Devise.trim().toLowerCase() === 'euro') ? '€' : (item.Devise ? item.Devise.trim() : '€');
                 const priceHtml = isOnRequest
                     ? '<span class="text-base font-bold text-sky-700">' + t.onRequest + '</span>'
-                    : '<span class="text-2xl font-extrabold text-slate-900">' + prix + ' ' + devise + '</span> <span class="text-xs text-slate-400 font-medium">' + t.perPerson + '</span>';
+                    : isGroupPrice
+                        ? '<span class="text-2xl font-extrabold text-slate-900">' + prix + ' ' + devise + '</span> <span class="text-xs text-slate-400 font-medium">(1-4)</span>'
+                        : '<span class="text-2xl font-extrabold text-slate-900">' + prix + ' ' + devise + '</span> <span class="text-xs text-slate-400 font-medium">' + t.perPerson + '</span>';
 
                 const imageUrl = (item.Image_URL && item.Image_URL.trim() !== '')
                     ? item.Image_URL.trim()
